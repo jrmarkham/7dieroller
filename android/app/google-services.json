@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "721405731060",
+    "firebase_url": "https://seven-die-roller.firebaseio.com",
+    "project_id": "seven-die-roller",
+    "storage_bucket": "seven-die-roller.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721405731060:android:002b9a72cd9edde6a53ea1",
+        "android_client_info": {
+          "package_name": "apps.markhamenterprises.sevendie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721405731060-vhjvn86ghfg7ofujl2a4aaf4l9678mm8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBhtV7zzTuHyfVJhnJglhatPDxAcJjTrk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721405731060-vhjvn86ghfg7ofujl2a4aaf4l9678mm8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "721405731060-514joebti6toqk8jcj3f0cp8nkijnui8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "apps.markhamenterprises.sevendie"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

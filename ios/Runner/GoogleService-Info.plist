@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>721405731060-514joebti6toqk8jcj3f0cp8nkijnui8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.721405731060-514joebti6toqk8jcj3f0cp8nkijnui8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAuTEnMs1-kZSmTajqTsiqYa_qTM_NuAhY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>721405731060</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>apps.markhamenterprises.sevendie</string>
+	<key>PROJECT_ID</key>
+	<string>seven-die-roller</string>
+	<key>STORAGE_BUCKET</key>
+	<string>seven-die-roller.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:721405731060:ios:033ba991cf4f4714a53ea1</string>
+	<key>DATABASE_URL</key>
+	<string>https://seven-die-roller.firebaseio.com</string>
+</dict>
+</plist>
