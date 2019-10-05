@@ -36,8 +36,9 @@ class _MainDisplayState extends State<MainDisplay> {
   }
 
   void rollDie(){
-      debugPrint(':::::D7:::::::  rollDie() ');
+      debugPrint(':::::D7:::::::  rollDie() start');
       _firebaseBloc.dispatch(FirebaseEventRollDie());
+      debugPrint(':::::D7:::::::  rollDie() end');
   }
 
   @override
