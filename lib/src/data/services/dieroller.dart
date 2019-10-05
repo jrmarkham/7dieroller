@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-// DICE RANGES
+// DIE PARAMS
+//
 const int DIE_MIN = 1;
 const int DIE_MAX = 7;
 const int DIE_POOL = 5;
