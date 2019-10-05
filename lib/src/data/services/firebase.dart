@@ -9,6 +9,7 @@ const String SEVEN_DIE_DOCUMENT = 'main';
 abstract class BaseFirebaseService {
     Stream getStream();
     Future<void> setLock(bool _lock);
+    Future<void> setPool(List<int> _pool);
     Future<void> setRoll(int _roll);
 }
 
@@ -29,6 +30,12 @@ class FirebaseService extends BaseFirebaseService {
      await _firestore.collection(SEVEN_DIE_COLLECTION).document(SEVEN_DIE_DOCUMENT).updateData({LOCKED:_lock});
      return;
   }
+
+    Future<void> setPool(List<int> _pool) async {
+        await _firestore.collection(SEVEN_DIE_COLLECTION).document(SEVEN_DIE_DOCUMENT).updateData({POOL:_pool});
+        return;
+    }
+  
 // SET ROLL
     Future<void> setRoll(int _roll) async {
         await _firestore.collection(SEVEN_DIE_COLLECTION).document(SEVEN_DIE_DOCUMENT).updateData({ROLL:_roll});

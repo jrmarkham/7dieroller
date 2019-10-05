@@ -24,9 +24,6 @@ class FirebaseBloc extends Bloc<FirebaseEvent, FirebaseState> {
      // await _firebaseService.initRollListener(event.callback);
       final Stream stream = _firebaseService.getStream();
       debugPrint(':::::D7:::::: FirebaseEventInit');
-
-     // final bool locked = await _firebaseService.getLock();
-    //  debugPrint(':::::D7:::::: FirebaseEventInit locked $locked');
       yield FirebaseStateInitResponse(stream);
     }
 
@@ -37,33 +34,30 @@ class FirebaseBloc extends Bloc<FirebaseEvent, FirebaseState> {
 
     if(event is FirebaseEventUnlock){
       await _firebaseService.setLock(false);
-
-      //final bool locked = await _firebaseService.getLock();
-     // yield FirebaseStateResponse(locked);
-
       yield FirebaseStateLoaded();
     }
 
     if(event is FirebaseEventRollDie){
-      /// begin new roll //
+      // begin new roll //
       // lock firebase
       await _firebaseService.setLock(true);
-      //bool locked = await _firebaseService.getLock();
-     /// yield FirebaseStateResponse(locked);
-      // get timed updates
-      //
+
+      // create new pool
+      _dieRandomService.initPool();
+      final List<int> _list = _dieRandomService.getPool();
+      _list.sort();
+      _firebaseService.setPool(_list);
       int idx;
+
       for (idx = 0; idx < SPINS; idx++ ){
         await Future.delayed(Duration(seconds: SECONDS ));
         final int rand = _dieRandomService.getRandom();
-        debugPrint(':::::D7::::::rand ${rand.toString()}' );
         _firebaseService.setRoll(rand);
       }
 
       // roll complete
 
       await _firebaseService.setLock(false);
-     // locked = await _firebaseService.getLock();
       yield FirebaseStateLoaded();
 
 

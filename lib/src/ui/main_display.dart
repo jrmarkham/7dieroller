@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seven_die/src/data/blocs/firebase/bloc.dart';
 import 'package:seven_die/src/data/global_data.dart';
+import 'package:seven_die/src/ui/display_pool.dart';
 import 'package:seven_die/src/ui/five_die.dart';
 
 class MainDisplay extends StatefulWidget {
@@ -42,14 +43,14 @@ class _MainDisplayState extends State<MainDisplay> {
             child: BlocListener(
                 bloc: _firebaseBloc,
                 listener: (BuildContext context, FirebaseState state) {
-                    // in more complex app we would have more to listen too
+                    // in a more complex app we would have more to listen to
                   if (state is FirebaseStateInitResponse) {
                     // set stream //
                     setStreamStream(state.stream);
                   }
                 },
 
-                // this updates in real time w/ the could data to run the display
+                // the Stream builder updates in real time w/ the could data to run the display
                 // on the animated die and locks and unlocks the button
                 child: StreamBuilder<dynamic>(
                     stream: _dataStream,
@@ -62,6 +63,10 @@ class _MainDisplayState extends State<MainDisplay> {
                           snapshot.data.documents.first.data[LOCKED];
                       final int _roll =
                           snapshot.data.documents.first.data[ROLL];
+                      final List<dynamic> _pool =
+                      snapshot.data.documents.first.data[POOL];
+
+                      debugPrint(':::::D7::::: got pool $_pool');
 
                       final Function buttonFunction = _locked
                           ? null
@@ -72,6 +77,7 @@ class _MainDisplayState extends State<MainDisplay> {
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
+                            DisplayPool(_pool),
                           AnimatedSwitcher(
                             duration: Duration(seconds: SECONDS),
                             switchInCurve: Curves.easeIn,

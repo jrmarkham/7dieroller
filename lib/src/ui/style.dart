@@ -34,6 +34,7 @@ double imageHeightDisplayPercentage = 0.5;
 // TEXT SIZES
 
 double dieTextSize = 150;
+double dieMiniTextSize = 35;
 double titleTextSize;
 double labelTextSize;
 double bodyTextSize;
@@ -150,6 +151,12 @@ TextStyle dieTextStyle() {
         );
 }
 
+TextStyle dieMiniTextStyle() {
+    return TextStyle (
+        color: colorBlack, fontSize:dieMiniTextSize, fontWeight: FontWeight.bold, fontFamily: MAIN_FONT
+        );
+}
+
 
 TextStyle titleTextStyle() {
     return TextStyle (
@@ -215,7 +222,43 @@ ThemeData appTheme() {
 
 // ELEMENTS
 // Reusable Widgets Buttons / Form elements etc...
+Image getPentagram(int num) {
+    switch (num) {
+        case 1:
+            return Image.asset (
+                'assets/images/pentagram_blue.png'
+                );
 
+        case 2:
+            return Image.asset (
+                'assets/images/pentagram_green.png'
+                );
+        case 3:
+            return Image.asset (
+                'assets/images/pentagram_orange.png'
+                );
+        case 4:
+            return Image.asset (
+                'assets/images/pentagram_purple.png'
+                );
+        case 5:
+            return Image.asset (
+                'assets/images/pentagram_red.png'
+                );
+        case 6:
+            return Image.asset (
+                'assets/images/pentagram_violet.png'
+                );
+        case 7:
+            return Image.asset (
+                'assets/images/pentagram_yellow.png'
+                );
+        default:
+            return Image.asset (
+                'assets/images/pentagram_yellow.png'
+                );
+    }
+}
 
 Widget appButton(String label, Function function, ButtonSizes bs,
                  {IconData icon}) {
