@@ -35,6 +35,11 @@ class _MainDisplayState extends State<MainDisplay> {
     _firebaseBloc.dispatch(FirebaseEventInit());
   }
 
+  void rollDie(){
+      debugPrint(':::::D7:::::::  rollDie() ');
+      _firebaseBloc.dispatch(FirebaseEventRollDie());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -68,10 +73,10 @@ class _MainDisplayState extends State<MainDisplay> {
 
                       debugPrint(':::::D7::::: got pool $_pool');
 
-                      final Function buttonFunction = _locked
-                          ? null
-                          : () =>
-                              _firebaseBloc.dispatch(FirebaseEventRollDie());
+
+
+                      final Function buttonFunction = _locked ? null : ()=> rollDie();
+
                       final String buttonText = _locked ? btnLocked : btnRoll;
 
                       return Column(

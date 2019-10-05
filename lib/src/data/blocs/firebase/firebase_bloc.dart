@@ -27,11 +27,6 @@ class FirebaseBloc extends Bloc<FirebaseEvent, FirebaseState> {
       yield FirebaseStateInitResponse(stream);
     }
 
-//    if(event is FirebaseEventCheckLock){
-//      final bool locked = await _firebaseService.getLock();
-//      yield FirebaseStateResponse(locked);
-//    }
-
     if(event is FirebaseEventUnlock){
       await _firebaseService.setLock(false);
       yield FirebaseStateLoaded();
@@ -40,19 +35,23 @@ class FirebaseBloc extends Bloc<FirebaseEvent, FirebaseState> {
     if(event is FirebaseEventRollDie){
       // begin new roll //
       // lock firebase
-      await _firebaseService.setLock(true);
 
+      await _firebaseService.setLock(true);
+      debugPrint(':::::D7::::::: event is FirebaseEventRollDie 1 ');
       // create new pool
       _dieRandomService.initPool();
       final List<int> _list = _dieRandomService.getPool();
       _list.sort();
+
+      debugPrint(':::::D7::::::: event is FirebaseEventRollDie 2 ');
+
       _firebaseService.setPool(_list);
       int idx;
 
       for (idx = 0; idx < SPINS; idx++ ){
-        await Future.delayed(Duration(seconds: SECONDS ));
         final int rand = _dieRandomService.getRandom();
-        _firebaseService.setRoll(rand);
+        await _firebaseService.setRoll(rand);
+        await Future.delayed(Duration(seconds: SECONDS ));
       }
 
       // roll complete
