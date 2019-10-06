@@ -17,14 +17,6 @@ class _MainDisplayState extends State<MainDisplay> {
   FirebaseBloc _firebaseBloc;
   Stream _dataStream;
 
-  // called once from the bloc listener to assugn the stream to the stream builder
-  // which handles the flow of data (roll updates and the locks/unlock)
-
-  void setStreamStream(Stream _ds) {
-    setState(() {
-      _dataStream = _ds;
-    });
-  }
 
 
   @override
@@ -33,12 +25,6 @@ class _MainDisplayState extends State<MainDisplay> {
     super.initState();
     _firebaseBloc = BlocProvider.of<FirebaseBloc>(context);
     _firebaseBloc.dispatch(FirebaseEventInit());
-  }
-
-  void rollDie(){
-      debugPrint(':::::D7:::::::  rollDie() start');
-      _firebaseBloc.dispatch(FirebaseEventRollDie());
-      debugPrint(':::::D7:::::::  rollDie() end');
   }
 
   @override
@@ -52,7 +38,12 @@ class _MainDisplayState extends State<MainDisplay> {
                     // in a more complex app we would have more to listen to
                   if (state is FirebaseStateInitResponse) {
                     // set stream //
-                    setStreamStream(state.stream);
+
+                      // called once from the bloc listener to assigns the stream to the stream builder
+                      // which handles the flow of data (roll updates and the locks/unlock)
+                    setState(() {
+                        _dataStream = state.stream;
+                    });
                   }
                 },
 
@@ -72,11 +63,11 @@ class _MainDisplayState extends State<MainDisplay> {
                       final List<dynamic> _pool =
                       snapshot.data.documents.first.data[POOL];
 
-                      debugPrint(':::::D7::::: got pool $_pool');
+                      debugPrint(':::::D7::::: locked $_locked');
 
 
-
-                      final Function buttonFunction = _locked ? null : ()=> rollDie();
+                      final Function buttonFunction = _locked ? null : ()=> _firebaseBloc.dispatch(FirebaseEventRollDie());
+                      //final Function buttonFunction = _locked ? null : ()=> rollDie();
 
                       final String buttonText = _locked ? btnLocked : btnRoll;
 
