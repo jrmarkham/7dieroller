@@ -1,8 +1,14 @@
 import 'package:equatable/equatable.dart';
 
 abstract class FirebaseEvent extends Equatable {
-  FirebaseEvent([List props = const []]):super(props);
+  const FirebaseEvent();
 }
 
-class FirebaseEventInit extends FirebaseEvent {}
-class FirebaseEventRollDie extends FirebaseEvent {}
+class FirebaseEventInit extends FirebaseEvent {
+  @override
+  List<Object> get props => [];
+}
+class FirebaseEventRollDie extends FirebaseEvent {
+  @override
+  List<Object> get props => [];
+}
