@@ -1,17 +1,6 @@
 const functions = require('firebase-functions');
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
 const TIME = 15 * 1000;
-// function delayUpdate(ms, func){
-//     return new Promise(resolve=>{
-//         return setTimeout(func,ms)
-//     })
-// }
 
 exports.unlockAutoUpdate = functions.firestore
     .document('dieroller/main').onUpdate((change, context) => {
@@ -21,10 +10,10 @@ exports.unlockAutoUpdate = functions.firestore
         const timeUpdate =  setTimeout(update, TIME);
         console.log('isLocked ', isLocked);
         if(!isLocked){
-            console.log('unref');
+            console.log('unref -- stop timer');
             return timeUpdate.unref();
         }
 
-        console.log('running delay update');
+        console.log('running delay update to unlock api');
         return new Promise(resolve => timeUpdate.ref());
     });
